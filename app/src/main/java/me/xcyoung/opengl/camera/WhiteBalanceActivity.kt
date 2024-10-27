@@ -34,9 +34,11 @@ class WhiteBalanceActivity : AppCompatActivity() {
         findViewById<SeekBar>(R.id.seekBar2).setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                val a = (200f + 200f) * progress / 100.0f - 200f
-                Log.d(WhiteBalanceActivity::class.java.simpleName, "tint:$a")
-                cameraView.setTint(a)
+//                val a = (200f + 200f) * progress / 100.0f - 200f
+                Log.d(WhiteBalanceActivity::class.java.simpleName, "tint:$progress")
+
+
+                cameraView.setLevelMin(progress / 50f - 0.6f)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {

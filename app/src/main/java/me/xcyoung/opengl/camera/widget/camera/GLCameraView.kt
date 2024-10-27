@@ -60,4 +60,8 @@ class GLCameraView : GLSurfaceView {
     fun setTint(progress: Float) {
         cameraRender.setTint(progress)
     }
+
+    fun setLevelMin(progress: Float){
+        cameraRender.setLevelMin(progress)
+    }
 }

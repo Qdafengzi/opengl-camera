@@ -29,6 +29,9 @@ class GLCameraRender(private val context: Context, private val callback: Callbac
     private var framebuffer: IntArray = IntArray(1)
     private var framebufferTexture: IntArray = IntArray(1)
 
+    var filter1: Filter? = null
+    var filter2: Filter? = null
+
     private fun setupFramebuffer(width: Int, height: Int) {
         GLES20.glGenFramebuffers(1, framebuffer, 0)
         GLES20.glGenTextures(1, framebufferTexture, 0)
@@ -55,8 +58,6 @@ class GLCameraRender(private val context: Context, private val callback: Callbac
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0)
     }
 
-    var filter1: Filter? = null
-    var filter2: Filter? = null
 
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
 //        gl?.let {
@@ -72,7 +73,7 @@ class GLCameraRender(private val context: Context, private val callback: Callbac
             it.glGenTextures(textures.size, textures, 0)
             surfaceTexture = SurfaceTexture(textures[0])
 
-            filter1 = ScreenFilter(context) // 或其他的第一个滤镜
+            filter1 = LevelFilter(context) // 或其他的第一个滤镜
             filter2 = WhiteBalanceFilter(context) // 或其他的第二个滤镜
         }
 
@@ -158,6 +159,10 @@ class GLCameraRender(private val context: Context, private val callback: Callbac
 //        }
 
         (filter2 as WhiteBalanceFilter).tint = progress
+    }
+
+    fun setLevelMin(progress: Float){
+        (filter1 as LevelFilter).setMin(progress,1f,1f)
     }
 
     interface Callback {

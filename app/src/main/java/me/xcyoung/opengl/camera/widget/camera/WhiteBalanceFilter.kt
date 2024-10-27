@@ -68,6 +68,8 @@ class WhiteBalanceFilter(context: Context): Filter {
         vCoord = GLES20.glGetAttribLocation(program, "vCoord")
         vTexture = GLES20.glGetUniformLocation(program, "vTexture")
         vMatrix = GLES20.glGetUniformLocation(program, "vMatrix")
+
+        //不同的地方
         vTemperature = GLES20.glGetUniformLocation(program, "temperature")
         vTint = GLES20.glGetUniformLocation(program, "tint")
     }
@@ -91,6 +93,9 @@ class WhiteBalanceFilter(context: Context): Filter {
         // 3.3 变化矩阵传值
         GLES20.glUniformMatrix4fv(vMatrix, 1, false, mtx, 0)
 
+
+
+        //不同的地方 开始
         GLES20.glUniform1f(
             vTemperature,
             if (this.temperature < 5000) (0.0004 * (this.temperature - 5000.0)).toFloat()
@@ -98,6 +103,8 @@ class WhiteBalanceFilter(context: Context): Filter {
         )
 
         GLES20.glUniform1f(vTint, this.tint / 100.0f)
+        //不同的地方 结束
+
 
         // 3.4 给片元着色器中的 采样器绑定
         // 激活图层
