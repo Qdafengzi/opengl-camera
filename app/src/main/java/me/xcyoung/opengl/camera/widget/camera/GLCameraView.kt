@@ -29,10 +29,10 @@ class GLCameraView : GLSurfaceView {
     constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-//        val typeArray = context.obtainStyledAttributes(attrs, R.styleable.GLCameraView)
-//        val type = typeArray.getString(R.styleable.GLCameraView_type) ?: "Normal"
-//        cameraRender.type = type
-//        typeArray.recycle()
+        val typeArray = context.obtainStyledAttributes(attrs, R.styleable.GLCameraView)
+        val type = typeArray.getString(R.styleable.GLCameraView_type) ?: "Normal"
+        cameraRender.type = type
+        typeArray.recycle()
     }
 
     init {
@@ -59,9 +59,5 @@ class GLCameraView : GLSurfaceView {
 
     fun setTint(progress: Float) {
         cameraRender.setTint(progress)
-    }
-
-    fun setLevelMin(progress: Float){
-        cameraRender.setLevelMin(progress)
     }
 }

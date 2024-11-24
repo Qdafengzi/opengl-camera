@@ -38,7 +38,7 @@ class WhiteBalanceActivity : AppCompatActivity() {
                 Log.d(WhiteBalanceActivity::class.java.simpleName, "tint:$progress")
 
 
-                cameraView.setLevelMin(progress / 50f - 0.6f)
+//                cameraView.setLevelMin(progress / 50f - 0.6f)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
