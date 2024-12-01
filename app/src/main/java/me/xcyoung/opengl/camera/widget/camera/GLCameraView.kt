@@ -6,8 +6,6 @@ import android.util.AttributeSet
 import me.xcyoung.opengl.camera.R
 
 /**
- * @author ChorYeung
- * @since 2021/11/24
  */
 class GLCameraView : GLSurfaceView {
     companion object {
@@ -59,5 +57,9 @@ class GLCameraView : GLSurfaceView {
 
     fun setTint(progress: Float) {
         cameraRender.setTint(progress)
+    }
+
+    fun setFilters(filters:List<Filter>){
+        cameraRender.setFilters(filters)
     }
 }

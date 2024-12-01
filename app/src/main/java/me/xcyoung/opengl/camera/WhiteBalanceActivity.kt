@@ -5,6 +5,8 @@ import android.util.Log
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import me.xcyoung.opengl.camera.widget.camera.GLCameraView
+import me.xcyoung.opengl.camera.widget.camera.GammaFilter
+import me.xcyoung.opengl.camera.widget.camera.WhiteBalanceFilter
 
 class WhiteBalanceActivity : AppCompatActivity() {
 
@@ -14,6 +16,12 @@ class WhiteBalanceActivity : AppCompatActivity() {
 
         val cameraView = findViewById<GLCameraView>(R.id.cameraView)
 
+//        val filters = listOf(
+//            WhiteBalanceFilter(this),
+////            GammaFilter(this)
+//            )
+//
+//        cameraView.setFilters(filters)
         findViewById<SeekBar>(R.id.seekBar).setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -34,9 +42,9 @@ class WhiteBalanceActivity : AppCompatActivity() {
         findViewById<SeekBar>(R.id.seekBar2).setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-//                val a = (200f + 200f) * progress / 100.0f - 200f
+                val a = (200f + 200f) * progress / 100.0f - 200f
                 Log.d(WhiteBalanceActivity::class.java.simpleName, "tint:$progress")
-
+                cameraView.setTint(a)
 
 //                cameraView.setLevelMin(progress / 50f - 0.6f)
             }
